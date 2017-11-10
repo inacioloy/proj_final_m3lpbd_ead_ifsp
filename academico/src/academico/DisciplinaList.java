@@ -144,18 +144,22 @@ public class DisciplinaList extends javax.swing.JFrame {
             int carga_horaria = res.getInt("carga_horaria");
             int numero_vagas = res.getInt("numero_vagas");
             String turno = res.getString("turno");
-            ResultSet result= con.createStatement().executeQuery("select nome from curso where id="+res.getInt("id_curso")+"");
+            ResultSet result = null;
             String curso = "n/i";
-            while (result.next()){
+            try {
+                result = con.createStatement().executeQuery("select nome from curso where id = "+res.getString("id_curso")+"");
+                 while (result.next()){
            curso = result.getString("nome");
+                 }
+            } catch (SQLException ex) {
+                Logger.getLogger(DisciplinaList.class.getName()).log(Level.SEVERE, null, ex);
             }
-            String nomeCurso = result.getString(curso); 
             Vector v = new Vector();
             v.add(nome);
             v.add(carga_horaria);
             v.add(numero_vagas);
             v.add(turno);
-            v.add(nomeCurso);
+            v.add(curso);
             ((DefaultTableModel)jTable1.getModel()).addRow(v);
             }
         } catch (SQLException ex) {
@@ -187,10 +191,9 @@ public class DisciplinaList extends javax.swing.JFrame {
             msg = "Registro removido com sucesso";
             JOptionPane.showMessageDialog(rootPane, msg);
             ((DefaultComboBoxModel)jComboBox1.getModel()).removeElement(nomeDisciplina);
-            int numero_linhas = ((DefaultTableModel)jTable1.getModel()).getRowCount();
-            for (int i = 0; i < numero_linhas; i++) {
-              ((DefaultTableModel)jTable1.getModel()).removeRow(i);
-          }
+            //limpa dados tabela
+            ((DefaultTableModel)jTable1.getModel()).getDataVector().removeAllElements();
+            //popula tabela
             loadTable();
         } catch (SQLException ex){
             msg = "Erro ao remover registro";

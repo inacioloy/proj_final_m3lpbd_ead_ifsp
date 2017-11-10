@@ -185,7 +185,9 @@ public class CursoList extends javax.swing.JFrame {
             msg = "Registro removido com sucesso";
             JOptionPane.showMessageDialog(rootPane, msg);
             ((DefaultComboBoxModel)jComboBox1.getModel()).removeElement(nomeCurso);
-            jTable1.removeAll();
+            //limpa dados tabela
+            ((DefaultTableModel)jTable1.getModel()).getDataVector().removeAllElements();
+            //popula tabela
             loadTable();
         } catch (SQLException ex){
             msg = "Erro ao remover registro";

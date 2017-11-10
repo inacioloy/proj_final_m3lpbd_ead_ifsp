@@ -179,10 +179,12 @@ public class DisciplinaForm extends javax.swing.JFrame {
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField3ActionPerformed
-
+   
+    //metodo para inserir disciplina 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String idCurso = "";    
         String msg;
+        //tenta selecionar o id do curso indexaddo no ComboBox e atribui o resultado (valor do id) ao atributo idCurso para utilização no insert da disciplina
         try {
                  ResultSet res = con.createStatement().executeQuery("select id from curso where nome = '"+jComboBox2.getSelectedItem()+"'");
                  System.out.println(res);
@@ -195,7 +197,7 @@ public class DisciplinaForm extends javax.swing.JFrame {
                }
           
         String cmd = "insert into disciplina (nome, carga_horaria, numero_vagas, turno, id_curso) values ('"+jTextField1.getText()+"',"+jTextField2.getText()+","+jTextField3.getText()+",'"+jComboBox1.getSelectedItem()+"',"+idCurso+")";
-        
+        //tenta executar cmd sql que insere disciplina no BD, caso não consiga dispara exceção
         try {
             con.createStatement().executeUpdate(cmd);
          msg = "Registro adicionado com sucesso";

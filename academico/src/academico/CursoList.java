@@ -26,6 +26,7 @@ public class CursoList extends javax.swing.JFrame {
      * Creates new form CursoList
      */
     public CursoList() {
+        //chama metodo que inicia componentes Swing e os metódos criados para carregar o como e a tabela
         initComponents();
         loadCombo();
         loadTable();
@@ -140,7 +141,7 @@ public class CursoList extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     
-    
+    //metodo para popular a tabela
     private void loadTable(){
     String sql = "select * from curso";
         try {
@@ -159,6 +160,7 @@ public class CursoList extends javax.swing.JFrame {
     
     }
     
+    //metodo para popular o combo
     private void loadCombo(){
         String cmd = "select * from curso";
         try {
@@ -173,10 +175,11 @@ public class CursoList extends javax.swing.JFrame {
     }
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-      //Connection con = ConexaoMySQL.getInstance().getConnection();
+      //Executa comando SQL para deletar registro selecionado no combo da base dados
       String nomeCurso = (String) jComboBox1.getModel().getSelectedItem();
       String cmd = "delete from curso where nome= '"+nomeCurso+"'";
       String msg;
+      //tenta executar cmd sql, caso não consiga dispara exceção
       try {
             con.createStatement().execute(cmd);
             msg = "Registro removido com sucesso";

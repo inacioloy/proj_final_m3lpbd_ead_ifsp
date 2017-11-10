@@ -149,7 +149,7 @@ public class DisciplinaList extends javax.swing.JFrame {
             while (result.next()){
            curso = result.getString("nome");
             }
-            String nomeCurso = res.getString(curso); 
+            String nomeCurso = result.getString(curso); 
             Vector v = new Vector();
             v.add(nome);
             v.add(carga_horaria);

@@ -24,6 +24,7 @@ public class Principal extends javax.swing.JFrame {
      * Creates new form Principal
      */
     public Principal() {
+        //executa metodo par ainiciar componentes Swing e o metodo que mostra a quantidade de registros na base (cursos e disciplinas)
         initComponents();
         loadContadores(); 
     }
@@ -201,6 +202,7 @@ public class Principal extends javax.swing.JFrame {
      dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
     
+    //metodo executa select que conta registros na tabela curso e outro select na tabela disciplina e seta este valor no atributo Text do Label
     private void loadContadores(){
     Connection con = ConexaoMySQL.getInstance().getConnection();
         try {

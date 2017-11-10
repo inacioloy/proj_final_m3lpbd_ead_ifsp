@@ -126,10 +126,11 @@ public class CursoForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        // Código utilizado para inserir um novo curso atraves da execução de uma instrução SQL
         String msg;
         String cmd = "insert into curso (nome, coordenador) values ('"+jTextField1.getText()+"','"+jTextField2.getText()+"')";
         Connection con = ConexaoMySQL.getInstance().getConnection();
+        //tenta executar a instrução sql, caso não consiga dispara uma exceção
         try {
             con.createStatement().executeUpdate(cmd);
              msg = "Registro adicionado com sucesso";

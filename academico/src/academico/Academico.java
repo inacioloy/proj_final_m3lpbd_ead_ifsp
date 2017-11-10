@@ -27,6 +27,7 @@ public class Academico {
 //******************************************************
     
     public static void main(String[] args) {
+    //instancia e renderiza classe principal que contem o menu do software
     Principal programa = new Principal();
     programa.setVisible(true);
     }
